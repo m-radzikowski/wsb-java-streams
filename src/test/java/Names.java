@@ -25,10 +25,7 @@ public class Names {
      */
     @Test
     void task1() {
-        long count = names.stream()
-                .filter(name -> "K".equals(name.getSex()))
-                .filter(name -> !name.getName().endsWith("A"))
-                .count();
+        long count = 0; // TODO Napisz implementację
 
         System.out.println("Ilość imion żeńskich nie kończących się na 'a':");
         System.out.println(count);
@@ -41,10 +38,7 @@ public class Names {
      */
     @Test
     void task2() {
-        int sum = names.stream()
-                .filter(name -> "JAN".equals(name.getName()))
-                .mapToInt(name -> name.getCount())
-                .sum();
+        int sum = 0; // TODO Napisz implementację
 
         System.out.println("Liczba nadanych imion 'Jan':");
         System.out.println(sum);
@@ -57,10 +51,7 @@ public class Names {
      */
     @Test
     void task3() {
-        IntSummaryStatistics statistics = names.stream()
-                .filter(name -> "POLA".equals(name.getName()))
-                .mapToInt(name -> name.getCount())
-                .summaryStatistics();
+        IntSummaryStatistics statistics = new IntSummaryStatistics(); // TODO Napisz implementację
 
         int min = statistics.getMin();
         int max = statistics.getMax();
@@ -82,12 +73,7 @@ public class Names {
      */
     @Test
     void task4() {
-        String mostPopular2019 = names.stream()
-                .filter(name -> name.getYear() == 2019)
-                .filter(name -> "K".equals(name.getSex()))
-                .limit(5)
-                .map(name -> name.getName())
-                .collect(Collectors.joining(", "));
+        String mostPopular2019 = ""; // TODO Napisz implementację
 
         System.out.println("Najpopularniejsze imiona żeńskie w 2019 roku:");
         System.out.println(mostPopular2019);
@@ -100,13 +86,7 @@ public class Names {
      */
     @Test
     void task5() {
-        List<String> longestNames = names.stream()
-                .map(nameInfo -> nameInfo.getName())
-                .sorted(Comparator.comparing(String::length).reversed())
-//                .sorted((a, b) -> b.length() - a.length())
-                .distinct()
-                .limit(4)
-                .collect(Collectors.toList());
+        List<String> longestNames = Collections.emptyList(); // TODO Napisz implementację
 
         System.out.println("Najdłuższe imiona:");
         System.out.println(longestNames);
