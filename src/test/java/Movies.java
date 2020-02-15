@@ -10,7 +10,7 @@ public class Movies {
 
     List<Movie> topMovies = Arrays.asList(
             new Movie("Skazani na Shawshank", 1994, 8.75, "Frank Darabont", 25_000_000, 59_841_469),
-            new Movie("Nietykalni", 2011, 8.63, "Olivier Nakache, Éric Toledano", 9_500_000, 426_588_510),
+            new Movie("Nietykalni", 2011, 8.63, "Olivier Nakache", 9_500_000, 426_588_510),
             new Movie("Zielona mila", 1999, 8.61, "Frank Darabont", 60_000_000, 286_801_374),
             new Movie("Ojciec chrzestny", 1972, 8.59, "Francis Ford Coppola", 6_000_000, 245_066_411),
             new Movie("Dwunastu gniewnych ludzi", 1957, 8.54, "Sidney Lumet", 340_000, 2_000_000),
@@ -59,7 +59,7 @@ public class Movies {
         System.out.println("Reżyserzy najlepszych filmów:");
         System.out.println(directors);
 
-        List<String> expected = Arrays.asList("FRANK DARABONT", "OLIVIER NAKACHE, ÉRIC TOLEDANO", "FRANK DARABONT", "FRANCIS FORD COPPOLA", "SIDNEY LUMET");
+        List<String> expected = Arrays.asList("FRANK DARABONT", "OLIVIER NAKACHE", "FRANK DARABONT", "FRANCIS FORD COPPOLA", "SIDNEY LUMET");
         assertEquals(expected, directors);
     }
 
@@ -73,7 +73,7 @@ public class Movies {
         System.out.println("Reżyserzy najlepszych filmów:");
         System.out.println(directors);
 
-        List<String> expected = Arrays.asList("FRANK DARABONT", "OLIVIER NAKACHE, ÉRIC TOLEDANO", "FRANCIS FORD COPPOLA", "SIDNEY LUMET");
+        List<String> expected = Arrays.asList("FRANK DARABONT", "OLIVIER NAKACHE", "FRANCIS FORD COPPOLA", "SIDNEY LUMET", "ROBERT ZEMECKIS");
         assertEquals(expected, directors);
     }
 
