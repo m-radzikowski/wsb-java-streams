@@ -30,7 +30,7 @@ public class Names {
         System.out.println("Ilość imion żeńskich nie kończących się na 'a':");
         System.out.println(count);
 
-        assertEquals(2468, count);
+        assertEquals(572, count);
     }
 
     /**
@@ -68,7 +68,7 @@ public class Names {
     }
 
     /**
-     * Podaj najpopularniejsze imiona żeńskie w 2019 roku jako tekst rozdzielony przecinkami
+     * Podaj 5 najpopularniejszych imion żeńskich w 2019 roku jako tekst rozdzielony przecinkami
      * (na przykład: "ANIA, KASIA, BASIA").
      */
     @Test
