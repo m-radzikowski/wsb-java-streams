@@ -65,10 +65,11 @@ public class BikeRentals {
 
     /**
      * Podaj sumę przejechanych kilometrów przez wszystkie rowery.
+     * Porównaj czas z używaniem przetwarzania równoległego przy obliczaniu wartości totalDistanceMeters.
      */
     @Test
     void task2() {
-        Map<Integer, List<BikeRental>> byStartStation = Collections.emptyMap(); // TODO Napisz implementację
+        Map<Integer, List<BikeStation>> byStartStation = Collections.emptyMap(); // TODO Napisz implementację
 
         Map<Integer, BikeStation> stationsByCode = Collections.emptyMap(); // TODO Napisz implementację
 
