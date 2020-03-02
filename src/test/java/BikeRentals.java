@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -51,9 +50,15 @@ public class BikeRentals {
      */
     @Test
     void task1() {
-        Map<Integer, List<BikeRental>> byStartStation = Collections.emptyMap(); // TODO Napisz implementację
+        Map<Integer, List<BikeRental>> byStartStation = rentals.stream().collect(Collectors.groupingBy(BikeRental::getStartStationCode));
 
-        Map<Integer, Integer> rentalsByStation = Collections.emptyMap(); // TODO Napisz implementację
+        Map<Integer, Integer> rentalsByStation = byStartStation.entrySet().stream()
+                .sorted((a, b) -> b.getValue().size() - a.getValue().size())
+                .limit(3)
+                .collect(Collectors.toMap(
+                        entry -> entry.getKey(),
+                        entry -> entry.getValue().size()
+                ));
 
         System.out.println("Najpopularniejsze stacje:");
         rentalsByStation.forEach((key, value) -> System.out.println("Stacja " + key + ": " + value + " wypożyczeń"));
@@ -65,14 +70,29 @@ public class BikeRentals {
 
     /**
      * Podaj sumę przejechanych kilometrów przez wszystkie rowery.
+     * Porównaj czas z używaniem przetwarzania równoległego przy obliczaniu wartości totalDistanceMeters.
      */
     @Test
     void task2() {
-        Map<Integer, List<BikeRental>> byStartStation = Collections.emptyMap(); // TODO Napisz implementację
+        Map<Integer, List<BikeStation>> byStartStation = stations.stream()
+                .collect(Collectors.groupingBy(BikeStation::getCode));
 
-        Map<Integer, BikeStation> stationsByCode = Collections.emptyMap(); // TODO Napisz implementację
+        Map<Integer, BikeStation> stationsByCode = byStartStation.entrySet().stream()
+                .collect(Collectors.toMap(
+                        entry -> entry.getKey(),
+                        e -> e.getValue().get(0)
+                ));
 
-        double totalDistanceMeters = 0; // TODO Napisz implementację
+        double totalDistanceMeters = rentals.stream()
+                .filter(rental -> stationsByCode.containsKey(rental.getStartStationCode()))
+                .filter(rental -> stationsByCode.containsKey(rental.getEndStationCode()))
+                .mapToDouble(rental -> distance(
+                        stationsByCode.get(rental.getStartStationCode()).getLatitude(),
+                        stationsByCode.get(rental.getStartStationCode()).getLongitude(),
+                        stationsByCode.get(rental.getEndStationCode()).getLatitude(),
+                        stationsByCode.get(rental.getEndStationCode()).getLongitude()
+                ))
+                .sum();
 
         long totalDistanceKM = Math.round(totalDistanceMeters / 1000);
 
@@ -88,7 +108,8 @@ public class BikeRentals {
      */
     @Test
     void task3() {
-        Map<Integer, Long> rentalsByStation = Collections.emptyMap(); // TODO Napisz implementację
+        Map<Integer, Long> rentalsByStation = rentals.stream()
+                .collect(Collectors.groupingBy(rental -> rental.getStartStationCode(), Collectors.counting()));
 
         System.out.println("Wypożyczenia wg stacji:");
         rentalsByStation.forEach((key, value) -> System.out.println(key + ": " + value + " wypożyczeń"));

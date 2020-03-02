@@ -1,8 +1,8 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,7 +26,10 @@ public class Movies {
      */
     @Test
     void task1() {
-        List<String> movies = Collections.emptyList(); // TODO Zastąp tworzenie pustej listy implementacją
+        List<String> movies = topMovies.stream()
+                .filter(movie -> movie.getYear() < 2000)
+                .map(movie -> movie.getTitle())
+                .collect(Collectors.toList());
 
         System.out.println("Filmy powstałe przed rokiem 2000:");
         System.out.println(movies);
@@ -40,7 +43,11 @@ public class Movies {
      */
     @Test
     void task2() {
-        List<String> movies = Collections.emptyList(); // TODO Zastąp tworzenie pustej listy implementacją
+        List<String> movies = topMovies.stream()
+                .filter(movie -> movie.getBudget() < 10_000_000)
+                .limit(3)
+                .map(movie -> movie.getTitle())
+                .collect(Collectors.toList());
 
         System.out.println("3 najlepsze filmy z budżetem poniżej $10.000.000:");
         System.out.println(movies);
@@ -54,7 +61,10 @@ public class Movies {
      */
     @Test
     void task3() {
-        List<String> directors = Collections.emptyList(); // TODO Zastąp tworzenie pustej listy implementacją
+        List<String> directors = topMovies.stream()
+                .limit(5)
+                .map(movie -> movie.getDirector().toUpperCase())
+                .collect(Collectors.toList());
 
         System.out.println("Reżyserzy najlepszych filmów:");
         System.out.println(directors);
@@ -64,11 +74,15 @@ public class Movies {
     }
 
     /**
-     * Podaj reżyserów 5 najlepszych filmów, zapisane WIELKIMI LITERAMI. Użyj metody distinct() aby usunąć duplikaty.
+     * Podaj 5 reżyserów najlepszych filmów, zapisane WIELKIMI LITERAMI. Użyj metody distinct() aby usunąć duplikaty.
      */
     @Test
     void task4() {
-        List<String> directors = Collections.emptyList(); // TODO Zastąp tworzenie pustej listy implementacją
+        List<String> directors = topMovies.stream()
+                .map(movie -> movie.getDirector().toUpperCase())
+                .distinct()
+                .limit(5)
+                .collect(Collectors.toList());
 
         System.out.println("Reżyserzy najlepszych filmów:");
         System.out.println(directors);
@@ -82,7 +96,9 @@ public class Movies {
      */
     @Test
     void task5() {
-        List<String> movies = Collections.emptyList(); // TODO Zastąp tworzenie pustej listy implementacją
+        List<String> movies = topMovies.stream()
+                .map(movie -> movie.getTitle() + " (" + movie.getYear() + ") - " + movie.getDirector())
+                .collect(Collectors.toList());
 
         System.out.println("Najlepsze filmy:");
         System.out.println(movies);

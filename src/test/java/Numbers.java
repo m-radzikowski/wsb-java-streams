@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -33,7 +34,9 @@ public class Numbers {
      */
     @Test
     void task1_functional() {
-        List<Integer> above50 = numbers; // TODO Napisz implementację wykorzystując strumienie i przypisz wynik do zmiennej "above50"
+        List<Integer> above50 = numbers.stream()
+                .filter(n -> n > 50)
+                .collect(Collectors.toList());
 
         System.out.println("Liczby większe od 50:");
         System.out.println(above50);
@@ -46,7 +49,9 @@ public class Numbers {
      */
     @Test
     void task2() {
-        List<Integer> multipliedBy2 = numbers; // TODO Napisz implementację
+        List<Integer> multipliedBy2 = numbers.stream()
+                .map(n -> n * 2)
+                .collect(Collectors.toList());
 
         System.out.println("Liczby pomnożone przez 2:");
         System.out.println(multipliedBy2);
@@ -60,7 +65,9 @@ public class Numbers {
      */
     @Test
     void task3() {
-        List<Integer> first5 = numbers; // TODO Napisz implementację
+        List<Integer> first5 = numbers.stream()
+                .limit(5)
+                .collect(Collectors.toList());
 
         System.out.println("Pierwsze 5 liczb:");
         System.out.println(first5);
@@ -74,10 +81,21 @@ public class Numbers {
      */
     @Test
     void task4() {
-        int sum = 0; // TODO Napisz implementację
-        int product = 0; // TODO Napisz implementację
-        int min = 0; // TODO Napisz implementację
-        int max = 0; // TODO Napisz implementację
+        int sum = numbers.stream()
+                .limit(5)
+                .reduce(0, (acc, n) -> acc + n);
+
+        int product = numbers.stream()
+                .limit(5)
+                .reduce(1, (acc, n) -> acc * n);
+
+        int min = numbers.stream()
+                .limit(5)
+                .reduce(Integer.MAX_VALUE, (acc, n) -> n < acc ? n : acc);
+
+        int max = numbers.stream()
+                .limit(5)
+                .reduce(Integer.MIN_VALUE, (acc, n) -> n > acc ? n : acc);
 
         System.out.println("Suma: " + sum);
         System.out.println("Iloczyn: " + product);
