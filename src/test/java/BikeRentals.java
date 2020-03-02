@@ -46,9 +46,13 @@ public class BikeRentals {
 
     /**
      * Podaj kody i sumaryczne ilości wypożyczeń dla 3 stacji, z których najczęściej wypożyczano rowery.
+     * Podpowiedź: stwórz mapę [stacja początkowa -> wypożyczenia],
+     * następnie na podstawie jej elementów stwórz docelową strukturę.
      */
     @Test
     void task1() {
+        Map<Integer, List<BikeRental>> byStartStation = Collections.emptyMap(); // TODO Napisz implementację
+
         Map<Integer, Integer> rentalsByStation = Collections.emptyMap(); // TODO Napisz implementację
 
         System.out.println("Najpopularniejsze stacje:");
@@ -64,6 +68,10 @@ public class BikeRentals {
      */
     @Test
     void task2() {
+        Map<Integer, List<BikeRental>> byStartStation = Collections.emptyMap(); // TODO Napisz implementację
+
+        Map<Integer, BikeStation> stationsByCode = Collections.emptyMap(); // TODO Napisz implementację
+
         double totalDistanceMeters = 0; // TODO Napisz implementację
 
         long totalDistanceKM = Math.round(totalDistanceMeters / 1000);
@@ -75,17 +83,18 @@ public class BikeRentals {
 
     /**
      * Podaj statystykę wypożyczeń dla wszystkich stacji.
-     * Użyj wyłącznie funkcji reduce().
+     * Użyj Collectors.groupingBy podając inny collector z Collectors jako drugi argument,
+     * by w jednej operacji pogrupować i zliczyć elementy.
      */
     @Test
     void task3() {
-        Map<Integer, Integer> rentalsByStation = Collections.emptyMap(); // TODO Napisz implementację
+        Map<Integer, Long> rentalsByStation = Collections.emptyMap(); // TODO Napisz implementację
 
         System.out.println("Wypożyczenia wg stacji:");
         rentalsByStation.forEach((key, value) -> System.out.println(key + ": " + value + " wypożyczeń"));
 
         assertEquals(615, rentalsByStation.size());
-        assertEquals(2469, rentalsByStation.get(6145));
+        assertEquals(2470, rentalsByStation.get(6145));
     }
 
     /**
