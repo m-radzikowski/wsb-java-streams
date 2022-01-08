@@ -64,7 +64,7 @@ public class Movies {
     }
 
     /**
-     * Podaj reżyserów 5 najlepszych filmów, zapisane WIELKIMI LITERAMI. Użyj metody distinct() aby usunąć duplikaty.
+     * Podaj 5 reżyserów najlepszych filmów, zapisane WIELKIMI LITERAMI. Użyj metody distinct() aby usunąć duplikaty.
      */
     @Test
     void task4() {
